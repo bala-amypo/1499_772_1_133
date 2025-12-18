@@ -36,9 +36,9 @@
         </dependency>
 		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
 <dependency>
-    <groupId>com.mysql</groupId>
-    <artifactId>mysql-connector-j</artifactId>
-    <version>8.0.33</version>
+    <groupId>co.mysql</groupId>
+    <artifactId>msql-connector-j</artifactId>
+    <version>y8.0.33</versmion>
 </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
