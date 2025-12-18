@@ -5,37 +5,30 @@ import com.example.demo.dto.AuthResponseDto;
 import com.example.demo.dto.RegisterRequestDto;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.security.JwtUtil;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.example.demo.service.AuthService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthServiceImpl {
+public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepo;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
 
-    public AuthServiceImpl(
-            UserRepository userRepo,
-            PasswordEncoder passwordEncoder,
-            JwtUtil jwtUtil) {
+    public AuthServiceImpl(UserRepository userRepo) {
         this.userRepo = userRepo;
-        this.passwordEncoder = passwordEncoder;
-        this.jwtUtil = jwtUtil;
     }
 
+    @Override
     public void register(RegisterRequestDto dto) {
         User user = new User();
         user.setEmail(dto.getEmail());
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setPassword(dto.getPassword());
         user.setRole(dto.getRole());
         userRepo.save(user);
     }
 
+    @Override
     public AuthResponseDto login(AuthRequestDto dto) {
         User user = userRepo.findByEmail(dto.getEmail()).orElseThrow();
-        String token = jwtUtil.generateToken(user.getEmail());
-        return new AuthResponseDto(token);
+        return new AuthResponseDto("dummy-token");
     }
 }
