@@ -15,5 +15,5 @@ public class User {
     private String password;
     private String role;
 
-    // getters and setters
+    
 }
