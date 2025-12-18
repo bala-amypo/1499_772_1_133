@@ -34,13 +34,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-<dependency>
-    <groupId>co.mysql</groupId>
-    <artifactId>msql-connector-j</artifactId>
-    <version>y8.0.33</versmion>
+       <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+<dependentId>mysql-connector-j</artifactId>
+    <version>cy>
+    <groupId>com.mysql</groupId>
+    <artifac8.0.33</version>
 </dependency>
         <dependency>
+	
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
