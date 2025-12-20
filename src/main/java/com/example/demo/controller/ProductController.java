@@ -1,33 +1,18 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Product;
-import com.example.demo.service.impl.ProductServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/products")
 public class ProductController {
 
-    private final ProductServiceImpl productService;
-
-    public ProductController(ProductServiceImpl productService) {
-        this.productService = productService;
+    @GetMapping
+    public String getAllProducts() {
+        return "Products fetched";
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
-    }
-
-    @GetMapping("/{id}")
-    public Product getProduct(@PathVariable Long id) {
-        return productService.getProductById(id);
-    }
-
-    @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public String createProduct() {
+        return "Product created";
     }
 }
