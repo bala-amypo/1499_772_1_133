@@ -93,5 +93,20 @@ public class TransferSuggestion {
         this.status = status;
     }
 
+    public TransferSuggestion() {
+    }
+
+    public TransferSuggestion(Long id, Store sourceStore, Store targetStore, Product product, Integer quantity,
+            String priority, Timestamp suggestedAt, String status) {
+        this.id = id;
+        this.sourceStore = sourceStore;
+        this.targetStore = targetStore;
+        this.product = product;
+        this.quantity = quantity;
+        this.priority = priority;
+        this.suggestedAt = suggestedAt;
+        this.status = status;
+    }
+
     
 }

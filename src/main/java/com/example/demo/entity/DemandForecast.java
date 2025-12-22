@@ -55,6 +55,17 @@ public class DemandForecast {
     public void setConfidenceScore(Double confidenceScore) {
         this.confidenceScore = confidenceScore;
     }
+    public DemandForecast() {
+    }
+    public DemandForecast(Long id, Product product, Store store, LocalDate forecastDate, Integer predictedDemand,
+            Double confidenceScore) {
+        this.id = id;
+        this.product = product;
+        this.store = store;
+        this.forecastDate = forecastDate;
+        this.predictedDemand = predictedDemand;
+        this.confidenceScore = confidenceScore;
+    }
 
-    // getters and setters
+    
 }
