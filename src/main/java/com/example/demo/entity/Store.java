@@ -45,6 +45,15 @@ public class Store {
     }
     private String region;
     private Boolean active = true;
+    public Store() {
+    }
+    public Store(Long id, String storeName, String address, String region, Boolean active) {
+        this.id = id;
+        this.storeName = storeName;
+        this.address = address;
+        this.region = region;
+        this.active = active;
+    }
 
     
 }

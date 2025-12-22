@@ -45,6 +45,15 @@ public class Product {
     public void setActive(Boolean active) {
         this.active = active;
     }
+    public Product() {
+    }
+    public Product(Long id, String sku, String name, String category, Boolean active) {
+        this.id = id;
+        this.sku = sku;
+        this.name = name;
+        this.category = category;
+        this.active = active;
+    }
 
     
 }
