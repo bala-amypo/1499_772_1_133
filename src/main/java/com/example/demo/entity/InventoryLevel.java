@@ -54,6 +54,9 @@ public class InventoryLevel {
         return quantity;
     }
 
+    public InventoryLevel() {
+    }
+
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
@@ -63,6 +66,14 @@ public class InventoryLevel {
     }
 
     public void setLastUpdated(Timestamp lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public InventoryLevel(Long id, Store store, Product product, Integer quantity, Timestamp lastUpdated) {
+        this.id = id;
+        this.store = store;
+        this.product = product;
+        this.quantity = quantity;
         this.lastUpdated = lastUpdated;
     }
 
