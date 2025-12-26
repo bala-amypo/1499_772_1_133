@@ -11,6 +11,9 @@ import com.example.demo.service.AuthService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class AuthServiceImpl implements AuthService {
 
@@ -28,8 +31,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void register(RegisterRequestDto dto) {
+
         if (userAccountRepository.findByEmail(dto.getEmail()).isPresent()) {
-            throw new BadRequestException("Email already exists");
+            throw new BadRequestException("Email already registered");
         }
 
         UserAccount user = new UserAccount();
@@ -43,14 +47,27 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponseDto login(AuthRequestDto dto) {
-        UserAccount user = userAccountRepository.findByEmail(dto.getEmail())
-                .orElseThrow(() -> new BadRequestException("Invalid credentials"));
+
+        UserAccount user = userAccountRepository
+                .findByEmail(dto.getEmail())
+                .orElseThrow(() ->
+                        new BadRequestException("Invalid credentials"));
 
         if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
             throw new BadRequestException("Invalid credentials");
         }
 
-        String token = jwtUtil.generateToken(user.getEmail(), user.getRole());
-        return new AuthResponseDto(token, jwtUtil.getExpirationMillis());
+        // ✅ FIX: build claims map
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", user.getId());
+        claims.put("role", user.getRole());
+
+        // ✅ FIX: call correct JwtUtil method
+        String token = jwtUtil.generateToken(claims, user.getEmail());
+
+        return new AuthResponseDto(
+                token,
+                jwtUtil.getExpirationMillis()
+        );
     }
 }
