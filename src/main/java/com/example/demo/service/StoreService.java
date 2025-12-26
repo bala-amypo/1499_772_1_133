@@ -1,25 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Store;
-import com.example.demo.repository.StoreRepository;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
-public class StoreService {
+public interface StoreService {
 
-    private final StoreRepository storeRepo;
+    Store createStore(Store store);
 
-    public StoreService(StoreRepository storeRepo) {
-        this.storeRepo = storeRepo;
-    }
-
-    public Store save(Store store) {
-        return storeRepo.save(store);
-    }
-
-    public List<Store> getActiveStores() {
-        return storeRepo.findByActiveTrue();
-    }
+    List<Store> getAllStores();
 }
