@@ -1,22 +1,26 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Product;
+import com.example.demo.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 public class ProductController {
 
-    @GetMapping
-    public List<Product> getAllProducts() {
-        return new ArrayList<>(); // dummy list
-    }
+    @Autowired
+    private ProductService productService;
 
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
-        return product; // echo back
+        return productService.createProduct(product);
+    }
+
+    @GetMapping
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
     }
 }

@@ -1,22 +1,19 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.InventoryLevel;
+import com.example.demo.service.InventoryLevelService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
-@RequestMapping("/inventory")
-public class InventoryLevelController {
+@RequestMapping("/api/inventory")
+public class InventoryController {
 
-    @GetMapping
-    public List<InventoryLevel> getAllInventory() {
-        return new ArrayList<>(); // dummy response
-    }
+    @Autowired
+    private InventoryLevelService inventoryLevelService;
 
     @PostMapping
-    public InventoryLevel addInventory(@RequestBody InventoryLevel inventoryLevel) {
-        return inventoryLevel; // echo back request
+    public InventoryLevel createOrUpdateInventory(@RequestBody InventoryLevel inventoryLevel) {
+        return inventoryLevelService.createOrUpdateInventory(inventoryLevel);
     }
 }
