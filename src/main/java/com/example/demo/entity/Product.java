@@ -17,14 +17,45 @@ public class Product {
 
     private boolean active = true;
 
+    // 🔹 REQUIRED setter for controller usage
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     // getters & setters
-    public Long getId() { return id; }
-    public String getSku() { return sku; }
-    public void setSku(String sku) { this.sku = sku; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getCategory() { return category; }
-    public void setCategory(String category) { this.category = category; }
-    public boolean isActive() { return active; }
-    public void setActive(boolean active) { this.active = active; }
+    public Long getId() {
+        return id;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }
