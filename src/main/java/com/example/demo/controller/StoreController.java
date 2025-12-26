@@ -7,12 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/stores")
+@RequestMapping("/api/stores")
 public class StoreController {
 
     private final StoreService storeService;
 
-    // Constructor Injection
     public StoreController(StoreService storeService) {
         this.storeService = storeService;
     }
@@ -20,6 +19,11 @@ public class StoreController {
     @PostMapping
     public Store createStore(@RequestBody Store store) {
         return storeService.createStore(store);
+    }
+
+    @GetMapping("/{id}")
+    public Store getStore(@PathVariable Long id) {
+        return storeService.getStoreById(id);
     }
 
     @GetMapping

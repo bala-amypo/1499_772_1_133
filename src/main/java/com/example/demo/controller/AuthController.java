@@ -1,20 +1,21 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.AuthRequestDto;
+import com.example.demo.dto.AuthResponseDto;
 import com.example.demo.dto.RegisterRequestDto;
 import com.example.demo.service.AuthService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired
-    private AuthService authService;
+    private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequestDto dto) {
@@ -23,8 +24,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthRequestDto dto) {
-        String token = authService.login(dto);
-        return ResponseEntity.ok(Map.of("token", token));
+    public ResponseEntity<AuthResponseDto> login(
+            @RequestBody AuthRequestDto dto) {
+        return ResponseEntity.ok(authService.login(dto));
     }
 }
