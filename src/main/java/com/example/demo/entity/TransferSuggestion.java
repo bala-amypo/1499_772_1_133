@@ -4,42 +4,50 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "transfer_suggestions")
 public class TransferSuggestion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Product product;
-
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "source_store_id")
     private Store sourceStore;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "target_store_id")
     private Store targetStore;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
     private Integer suggestedQuantity;
+
     private String reason;
+
+    private String status = "PENDING";
 
     private LocalDateTime generatedAt;
 
     @PrePersist
     public void prePersist() {
-        generatedAt = LocalDateTime.now();
+        this.generatedAt = LocalDateTime.now();
     }
 
-    // getters & setters
+    // getters and setters
     public Long getId() { return id; }
-    public Product getProduct() { return product; }
-    public void setProduct(Product product) { this.product = product; }
     public Store getSourceStore() { return sourceStore; }
     public void setSourceStore(Store sourceStore) { this.sourceStore = sourceStore; }
     public Store getTargetStore() { return targetStore; }
     public void setTargetStore(Store targetStore) { this.targetStore = targetStore; }
+    public Product getProduct() { return product; }
+    public void setProduct(Product product) { this.product = product; }
     public Integer getSuggestedQuantity() { return suggestedQuantity; }
     public void setSuggestedQuantity(Integer suggestedQuantity) { this.suggestedQuantity = suggestedQuantity; }
     public String getReason() { return reason; }
     public void setReason(String reason) { this.reason = reason; }
     public LocalDateTime getGeneratedAt() { return generatedAt; }
+    public String getStatus() { return status; }
 }
