@@ -12,5 +12,7 @@ public interface InventoryLevelRepository extends JpaRepository<InventoryLevel, 
 
     Optional<InventoryLevel> findByStoreAndProduct(Store store, Product product);
 
+    List<InventoryLevel> findByProduct(Product product);
+
     List<InventoryLevel> findByStore(Store store);
 }
