@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 public class TransferSuggestion {
@@ -11,102 +11,35 @@ public class TransferSuggestion {
     private Long id;
 
     @ManyToOne
+    private Product product;
+
+    @ManyToOne
     private Store sourceStore;
 
     @ManyToOne
     private Store targetStore;
 
-    @ManyToOne
-    private Product product;
+    private Integer suggestedQuantity;
+    private String reason;
 
-    private Integer quantity;
-    private String priority;
-    private Timestamp suggestedAt;
-    private String status = "PENDING";
+    private LocalDateTime generatedAt;
 
     @PrePersist
-    public void setTime() {
-        suggestedAt = new Timestamp(System.currentTimeMillis());
+    public void prePersist() {
+        generatedAt = LocalDateTime.now();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Store getSourceStore() {
-        return sourceStore;
-    }
-
-    public void setSourceStore(Store sourceStore) {
-        this.sourceStore = sourceStore;
-    }
-
-    public Store getTargetStore() {
-        return targetStore;
-    }
-
-    public void setTargetStore(Store targetStore) {
-        this.targetStore = targetStore;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
-    public Timestamp getSuggestedAt() {
-        return suggestedAt;
-    }
-
-    public void setSuggestedAt(Timestamp suggestedAt) {
-        this.suggestedAt = suggestedAt;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public TransferSuggestion() {
-    }
-
-    public TransferSuggestion(Long id, Store sourceStore, Store targetStore, Product product, Integer quantity,
-            String priority, Timestamp suggestedAt, String status) {
-        this.id = id;
-        this.sourceStore = sourceStore;
-        this.targetStore = targetStore;
-        this.product = product;
-        this.quantity = quantity;
-        this.priority = priority;
-        this.suggestedAt = suggestedAt;
-        this.status = status;
-    }
-
-    
+    // getters & setters
+    public Long getId() { return id; }
+    public Product getProduct() { return product; }
+    public void setProduct(Product product) { this.product = product; }
+    public Store getSourceStore() { return sourceStore; }
+    public void setSourceStore(Store sourceStore) { this.sourceStore = sourceStore; }
+    public Store getTargetStore() { return targetStore; }
+    public void setTargetStore(Store targetStore) { this.targetStore = targetStore; }
+    public Integer getSuggestedQuantity() { return suggestedQuantity; }
+    public void setSuggestedQuantity(Integer suggestedQuantity) { this.suggestedQuantity = suggestedQuantity; }
+    public String getReason() { return reason; }
+    public void setReason(String reason) { this.reason = reason; }
+    public LocalDateTime getGeneratedAt() { return generatedAt; }
 }

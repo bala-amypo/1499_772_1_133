@@ -1,9 +1,12 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(
+    uniqueConstraints = @UniqueConstraint(columnNames = {"store_id", "product_id"})
+)
 public class InventoryLevel {
 
     @Id
@@ -18,64 +21,21 @@ public class InventoryLevel {
 
     private Integer quantity;
 
-    private Timestamp lastUpdated;
+    private LocalDateTime lastUpdated;
 
     @PrePersist
     @PreUpdate
     public void updateTimestamp() {
-        lastUpdated = new Timestamp(System.currentTimeMillis());
+        lastUpdated = LocalDateTime.now();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Store getStore() {
-        return store;
-    }
-
-    public void setStore(Store store) {
-        this.store = store;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public InventoryLevel() {
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Timestamp getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(Timestamp lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
-    public InventoryLevel(Long id, Store store, Product product, Integer quantity, Timestamp lastUpdated) {
-        this.id = id;
-        this.store = store;
-        this.product = product;
-        this.quantity = quantity;
-        this.lastUpdated = lastUpdated;
-    }
-
-    
+    // getters & setters
+    public Long getId() { return id; }
+    public Store getStore() { return store; }
+    public void setStore(Store store) { this.store = store; }
+    public Product getProduct() { return product; }
+    public void setProduct(Product product) { this.product = product; }
+    public Integer getQuantity() { return quantity; }
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
+    public LocalDateTime getLastUpdated() { return lastUpdated; }
 }
