@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.InventoryLevel;
-import com.example.demo.entity.Product;
-import com.example.demo.entity.Store;
 import com.example.demo.repository.InventoryLevelRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +19,7 @@ public class InventoryService {
         return inventoryRepo.save(inventory);
     }
 
-    public List<InventoryLevel> getByProduct(Product product) {
-        return inventoryRepo.findByProduct(product);
-    }
-
-    public List<InventoryLevel> getByStore(Store store) {
-        return inventoryRepo.findByStore(store);
+    public List<InventoryLevel> findAll() {
+        return inventoryRepo.findAll();
     }
 }
