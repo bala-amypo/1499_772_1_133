@@ -2,10 +2,15 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.TransferSuggestion;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface TransferSuggestionRepository extends JpaRepository<TransferSuggestion, Long> {
+@Repository
+public interface TransferSuggestionRepository
+        extends JpaRepository<TransferSuggestion, Long> {
 
-    List<TransferSuggestion> findByProductId(Long productId);
+    List<TransferSuggestion> findByProduct_Id(Long productId);
+
+    List<TransferSuggestion> findBySourceStore_Id(Long storeId);
 }
