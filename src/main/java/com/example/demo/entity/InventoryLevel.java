@@ -1,41 +1,53 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
-@Table(
-    uniqueConstraints = @UniqueConstraint(columnNames = {"store_id", "product_id"})
-)
-public class InventoryLevel {
+public class Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private Store store;
-
-    @ManyToOne
     private Product product;
 
-    private Integer quantity;
+    @ManyToOne
+    private Store store;
 
-    private LocalDateTime lastUpdated;
+    private int quantity;
 
-    @PrePersist
-    @PreUpdate
-    public void updateTimestamp() {
-        lastUpdated = LocalDateTime.now();
+    public Inventory() {}
+
+    public Long getId() {
+        return id;
     }
 
-    // getters & setters
-    public Long getId() { return id; }
-    public Store getStore() { return store; }
-    public void setStore(Store store) { this.store = store; }
-    public Product getProduct() { return product; }
-    public void setProduct(Product product) { this.product = product; }
-    public Integer getQuantity() { return quantity; }
-    public void setQuantity(Integer quantity) { this.quantity = quantity; }
-    public LocalDateTime getLastUpdated() { return lastUpdated; }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
