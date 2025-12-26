@@ -1,7 +1,8 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.Inventory;
+import com.example.demo.entity.InventoryLevel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface InventoryRepository extends JpaRepository<Inventory, Long> {
+public interface InventoryLevelRepository
+        extends JpaRepository<InventoryLevel, Long> {
 }

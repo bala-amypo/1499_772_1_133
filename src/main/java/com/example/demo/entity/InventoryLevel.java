@@ -3,7 +3,7 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class Inventory {
+public class InventoryLevel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class Inventory {
 
     private int quantity;
 
-    public Inventory() {}
+    public InventoryLevel() {}
 
     public Long getId() {
         return id;
