@@ -6,8 +6,6 @@ public class InventoryRequestDTO {
     private Long storeId;
     private int quantity;
 
-    public InventoryRequestDTO() {}
-
     public Long getProductId() {
         return productId;
     }
